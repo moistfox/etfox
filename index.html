@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliot Fox</title>
+<meta name="description" content="A small thank-you box for Eliot Fox.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: #FBF4E6;
+    color: #3A2E26;
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 3.5rem 1.5rem 2rem;
+  }
+
+  /* subtle warm paper texture using a radial gradient */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 123, 61, 0.06), transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(107, 142, 90, 0.05), transparent 50%);
+    z-index: -1;
+  }
+
+  main {
+    max-width: 540px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+  }
+
+  .mark {
+    width: 64px;
+    height: 56px;
+    margin: 0 auto 1.75rem;
+    display: block;
+    color: #C97B3D;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.6rem, 7vw, 3.4rem);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: #2D241D;
+  }
+
+  .tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-align: center;
+    color: #8A7461;
+    margin-bottom: 3.25rem;
+    font-size: 1.05rem;
+  }
+
+  section {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #C97B3D;
+    margin-bottom: 1.1rem;
+  }
+
+  p {
+    font-size: 1.0625rem;
+    margin-bottom: 1.1rem;
+    color: #3A2E26;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .divider {
+    text-align: center;
+    color: #D4B788;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    letter-spacing: 0.7rem;
+    user-select: none;
+  }
+
+  .give {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .method {
+    background: #F5EBD3;
+    border: 1px solid #ECDFC2;
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .method-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+  }
+
+  .method h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #2D241D;
+  }
+
+  .status {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #8A7461;
+  }
+
+  .wallet {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.82rem;
+    background: #FBF4E6;
+    padding: 0.6rem 0.8rem;
+    border-radius: 5px;
+    word-break: break-all;
+    color: #5C4A3A;
+    border: 1px solid #E8D9B8;
+    line-height: 1.4;
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: #8A7461;
+    font-style: italic;
+    text-align: center;
+    margin-top: 2.5rem;
+    line-height: 1.55;
+  }
+
+  footer {
+    max-width: 540px;
+    margin: 3.5rem auto 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #8A7461;
+    padding-top: 1.5rem;
+    border-top: 1px solid #ECDFC2;
+  }
+
+  footer a {
+    color: #8A7461;
+    text-decoration: none;
+    border-bottom: 1px solid #D4B788;
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  footer a:hover {
+    color: #C97B3D;
+    border-bottom-color: #C97B3D;
+  }
+
+  ::selection {
+    background: #E8C9A0;
+    color: #2D241D;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 2.5rem 1.25rem 1.5rem;
+      font-size: 16px;
+    }
+    p {
+      font-size: 1rem;
+    }
+    .divider {
+      margin: 2.25rem 0;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <svg class="mark" viewBox="0 0 64 56" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M14 22 L19 6 L27 20"/>
+    <path d="M50 22 L45 6 L37 20"/>
+    <path d="M14 22 C12 34, 18 46, 32 50 C46 46, 52 34, 50 22"/>
+    <circle cx="23" cy="28" r="1.3" fill="currentColor" stroke="none"/>
+    <circle cx="41" cy="28" r="1.3" fill="currentColor" stroke="none"/>
+    <path d="M32 35 L29.5 38 L34.5 38 Z" fill="currentColor" stroke="none"/>
+    <path d="M32 38 Q32 41 30 42 M32 38 Q32 41 34 42"/>
+  </svg>
+
+  <h1>Eliot Fox</h1>
+  <p class="tagline">a small thank&#8209;you box</p>
+
+  <section>
+    <p>Hi, I'm Eliot.</p>
+    <p>I make videos and streams. Useful information when I can manage it, occasional rambling when I can't, and the odd story along the way. I'm still small enough that the platforms I post on don't pay anything yet, so this little page is a tip jar. If something I've made was useful, or kept you company for a while, drop something in.</p>
+  </section>
+
+  <div class="divider">&middot; &middot; &middot;</div>
+
+  <section>
+    <h2>Where it goes</h2>
+    <p>For now, the money goes back into the work. Better gear, more time, fewer distractions, the boring overheads that let any of this keep happening.</p>
+    <p>The longer plan is something for the natural world. Conservation, animals, the environment. The exact shape isn't decided yet. There are a lot of directions and I'm still working through them. What I know is I'm aiming for it.</p>
+  </section>
+
+  <div class="divider">&middot; &middot; &middot;</div>
+
+  <section>
+    <h2>Ways to give</h2>
+    <div class="give">
+      <div class="method">
+        <div class="method-head">
+          <h3>Bitcoin</h3>
+          <span class="status">wallet coming soon</span>
+        </div>
+        <div class="wallet">bc1&#8230; &nbsp;(address will be posted here shortly)</div>
+      </div>
+
+      <div class="method">
+        <div class="method-head">
+          <h3>Card</h3>
+          <span class="status">coming soon</span>
+        </div>
+        <p style="font-size: 0.95rem; color: #5C4A3A; margin: 0;">A simple Stripe-powered checkout will live here once it's set up.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="note">Donations aren't tax&#8209;deductible. Right now they're as likely to cover rent or groceries as anything else, so please give only if you're okay with that. One day I'd like to publish an open ledger so every cent is visible, but I'm not there yet. Thank you for whatever you give.</p>
+</main>
+
+<footer>
+  <p><a href="mailto:eliot@biolobster.com">eliot@biolobster.com</a></p>
+  <p style="margin-top: 0.4rem; font-size: 0.8rem;">Eliot Fox &middot; 2026</p>
+</footer>
+</body>
+</html>

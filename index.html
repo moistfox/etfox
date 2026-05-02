@@ -5,9 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eliot Fox</title>
 <meta name="description" content="A small thank-you box for Eliot Fox.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<meta property="og:title" content="Eliot Fox">
+<meta property="og:description" content="A small thank-you box.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eliotfox.com/">
+<meta property="og:image" content="https://eliotfox.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eliot Fox">
+<meta name="twitter:description" content="A small thank-you box.">
+<meta name="twitter:image" content="https://eliotfox.com/og-image.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
 <style>
   *, *::before, *::after {
     box-sizing: border-box;
@@ -149,6 +166,25 @@
     color: #8A7461;
   }
 
+  .qr-code {
+    display: block;
+    width: 130px;
+    height: 130px;
+    margin: 0.65rem auto 0.85rem;
+    padding: 8px;
+    background: #FBF4E6;
+    border-radius: 6px;
+    border: 1px solid #ECDFC2;
+    box-sizing: border-box;
+  }
+
+  .wallet-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
   .wallet {
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.82rem;
@@ -159,6 +195,47 @@
     color: #5C4A3A;
     border: 1px solid #E8D9B8;
     line-height: 1.4;
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  a.wallet:hover {
+    border-color: #C97B3D;
+  }
+
+  .copy-btn {
+    border: 1px solid #E8D9B8;
+    background: #FBF4E6;
+    color: #5C4A3A;
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .copy-btn:hover {
+    background: #C97B3D;
+    color: #FBF4E6;
+    border-color: #C97B3D;
+  }
+
+  .copy-btn.copied {
+    background: #6B8E5A;
+    color: #FBF4E6;
+    border-color: #6B8E5A;
+  }
+
+  .stripe-embed {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
 
   .note {
@@ -247,18 +324,25 @@
     <div class="give">
       <div class="method">
         <div class="method-head">
-          <h3>Bitcoin</h3>
-          <span class="status">wallet coming soon</span>
+          <h3>Card</h3>
         </div>
-        <div class="wallet">bc1&#8230; &nbsp;(address will be posted here shortly)</div>
+        <div class="stripe-embed">
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TSV9CIAIW55pZ9jhNWrXyGf"
+            publishable-key="pk_live_51HPfryIAIW55pZ9jOChqWd0Uo1y4TtJ7lZ4z6zNmjfmEEc89g56hh9ynJ8SljcPn9ssuTEjc3iUf2M6MQbccH32H005KJmiigf">
+          </stripe-buy-button>
+        </div>
       </div>
 
       <div class="method">
         <div class="method-head">
-          <h3>Card</h3>
-          <span class="status">coming soon</span>
+          <h3>Bitcoin</h3>
         </div>
-        <p style="font-size: 0.95rem; color: #5C4A3A; margin: 0;">A simple Stripe-powered checkout will live here once it's set up.</p>
+        <img class="qr-code" src="bitcoin-qr.png" alt="QR code containing the Bitcoin donation address" width="130" height="130">
+        <div class="wallet-row">
+          <a class="wallet" href="bitcoin:bc1qguacmck698kfne0h92mzpu9rzppdw4nnugxn36">bc1qguacmck698kfne0h92mzpu9rzppdw4nnugxn36</a>
+          <button class="copy-btn" type="button" data-copy="bc1qguacmck698kfne0h92mzpu9rzppdw4nnugxn36">Copy</button>
+        </div>
       </div>
     </div>
   </section>
@@ -267,8 +351,24 @@
 </main>
 
 <footer>
-  <p><a href="mailto:eliot@biolobster.com">eliot@biolobster.com</a></p>
-  <p style="margin-top: 0.4rem; font-size: 0.8rem;">Eliot Fox &middot; 2026</p>
+  <p>Eliot Fox &middot; 2026</p>
 </footer>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    });
+  });
+</script>
 </body>
 </html>
